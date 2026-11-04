@@ -1,0 +1,144 @@
+﻿@using Bogus.Extensions
+@using WarehouseMVC.Domain.Model
+@model WarehouseMVC.Application.ViewModel.Image.NewImageModelVm
+
+@*
+@{
+    ViewData["Title"] = "Create";
+}
+*@
+<h1 align="center">Enter new Employee</h1>
+<hr />
+<form asp-action="Create" enctype="multipart/form-data">
+    <div align="center" style="width:25%; height:auto; margin-left:175px; float:left;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <label asp-for="IsHired" class="control-label" hidden=""></label>
+        <label asp-for="Status" class="control-label" hidden=""></label>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" placeholder="Enter your name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Surname" class="control-label"></label>
+            <input asp-for="Surname" class="form-control" placeholder="Enter your surname" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="control-label"></label>
+            <input asp-for="Phone" class="form-control" placeholder="Enter your phone" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <div align="center" style="width: 25%; height: auto; margin-right: 175px; float: right;">
+        <div class="form-group">
+            <label asp-for="CompanyId" class="control-label"></label>
+            <select asp-for="CompanyId" class="form-control" asp-items="@ViewBag.CompanyId"></select>
+            <span asp-validation-for="CompanyId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GroupManagerId" class="control-label"></label>
+            <select asp-for="GroupManagerId" class="form-control" asp-items="@ViewBag.GroupManagerId"></select>
+            <span asp-validation-for="GroupManagerId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GroupLeaderId" class="control-label"></label>
+            <select asp-for="GroupLeaderId" class="form-control" asp-items="@ViewBag.GroupLeaderId"></select>
+            <span asp-validation-for="GroupLeaderId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price" class="control-label"></label>
+            <input asp-for="Price" class="form-control" placeholder="Price BRUTTO"/>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group" hidden="">
+            <label asp-for="AddFrom" class="control-label" hidden=""></label>
+            <input asp-for="AddFrom" class="form-control"/>
+            <span asp-validation-for="AddFrom" class="text-danger" hidden=""></span>
+        </div>
+        <div class="form-group" hidden="">
+            <label asp-for="AcceptHiredRecruitment" class="control-label"></label>
+            <select asp-for="AcceptHiredRecruitment" class="form-control" asp-items="Html.GetEnumSelectList<AcceptHiredRecruitment>()">
+            </select>
+            <span asp-validation-for="AcceptHiredRecruitment" class="text-danger"></span>
+        </div>
+        <div class="form-group" hidden="">
+            <label asp-for="AcceptHiredControlling" class="control-label"></label>
+            <select asp-for="AcceptHiredControlling" class="form-control" asp-items="Html.GetEnumSelectList<AcceptHiredControlling>()">
+            </select>
+            <span asp-validation-for="AcceptHiredControlling" class="text-danger"></span>
+        </div>
+        <div class="form-group" hidden="">
+            <label asp-for="AcceptHiredCfo" class="control-label"></label>
+            <select asp-for="AcceptHiredCfo" class="form-control" asp-items="Html.GetEnumSelectList<AcceptHiredCfo>()">
+            </select>
+            <span asp-validation-for="AcceptHiredCfo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmployedUnder" class="control-label"></label>
+            <select asp-for="EmployedUnder" class="form-control" asp-items="Html.GetEnumSelectList<EmployedUnder>()">
+            </select>
+            <span asp-validation-for="EmployedUnder" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmploymentDate" class="control-label"></label>
+            <input asp-for="EmploymentDate" class="form-control"/>
+            <span asp-validation-for="EmploymentDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div align="center" style="margin-top:40px; margin-bottom:20px;">
+
+        <tr><h5 align="center">Select the type of application you are submitting:</h5></tr>
+        <br />
+        <table width="30%" style="margin: auto; text-align: left; table-layout: fixed;">
+            <tr align="center">
+                <th>Establishment plan</th>
+                <th>Add hoc</th>
+                <th>Employee rotations</th>
+            </tr>
+            <tr align="center">
+                <th><input asp-for="CompatibleHarmonogram" type="checkbox" class="form-control"></th>
+                <th><input asp-for="AddHoc" type="checkbox" class="form-control"></th>
+                <th><input asp-for="Rotation" type="checkbox" class="form-control"></th>
+            </tr>
+        </table>
+        <br />
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label"></label>
+            <input asp-for="ImageFile" type="file" name="attachments" multiple="multiple" accept="*/*" align="middle"/>
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+        <div class="alert-danger">
+            @TempData["error"]
+        </div>
+        <div class="alert-success">
+            @TempData["applyvaltrue"]
+        </div>
+        <div class="alert-danger">
+            @TempData["applyvalfalse"]
+        </div><br />
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

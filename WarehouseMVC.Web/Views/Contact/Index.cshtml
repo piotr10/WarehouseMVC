@@ -1,0 +1,118 @@
+﻿@model WarehouseMVC.Application.ViewModel.Contact.ListContactForListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    tr th {
+        text-align: center;
+    }
+</style>
+<h1 align="center">Contact</h1>
+<hr />
+<form asp-action="Index" asp-controller="Contact">
+    <div class="row" style="margin-left: 20px;">
+        <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <input type="submit" value="Search" />
+    </div>
+    <div class="row">
+        <table class="table" id="Exampledatatable" style="width:100%; table-layout:fixed;">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Surname
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        Attachment
+                    </th>
+                    <th>
+                        Add from
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Contacts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImageName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddFrom)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="GetBlobDownload" asp-route-id="@item.Id">Download</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="margin-left: 20px;">
+        <table>
+            <tr style="font-size: 20px;">
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i != Model.CurrentPage)
+                        {
+                            <a href="javascript:PagerClick(@i)">&nbsp;&nbsp;@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input type="hidden" name="pageNo" id="pageNo" />
+        <input type="hidden" name="pageSize" id="pageSize" value="10" />
+    </div>
+</form>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.forms[1].submit();
+        }
+    </script>
+}
+

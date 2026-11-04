@@ -1,0 +1,54 @@
+﻿@model WarehouseMVC.Application.ViewModel.Questionnaire.QuestionnaireDetailsVm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    h5 {
+        margin-bottom: 20px;
+    }
+</style>
+
+<h1>Details</h1>
+<hr />
+<tbody align="center">
+    <tr class="row">
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.FullName):</h3>
+            <h5>@Html.DisplayFor(model => model.FullName)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Email):</h3>
+            <h5>@Html.DisplayFor(model => model.Email)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Phone):</h3>
+            <h5>@Html.DisplayFor(model => model.Phone)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Street):</h3>
+            <h5>@Html.DisplayFor(model => model.Street)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.HouseNumber):</h3>
+            <h5>@Html.DisplayFor(model => model.HouseNumber)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.FlatNumber):</h3>
+            <h5>@Html.DisplayFor(model => model.FlatNumber)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Town):</h3>
+            <h5>@Html.DisplayFor(model => model.Town)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Country):</h3>
+            <h5>@Html.DisplayFor(model => model.Country)</h5>
+        </td>
+    </tr>
+</tbody>
+<br />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

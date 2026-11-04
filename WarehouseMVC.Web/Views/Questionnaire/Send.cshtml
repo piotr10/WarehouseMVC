@@ -1,0 +1,66 @@
+﻿@model WarehouseMVC.Application.ViewModel.Questionnaire.NewSendQuestionnaireVm
+
+@{
+    ViewData["Title"] = "Send";
+}
+
+<h1>Send Questionnaire</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4" style="margin: 0 auto;">
+        <form method="post" enctype="multipart/form-data" asp-action="Send">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Subject" class="control-label"></label>
+                <input asp-for="Subject" class="form-control"
+                       style="text-align: center; width: 60%; margin: auto;" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"
+                       style="text-align: center; width: 60%; margin: auto;" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control"
+                       style="text-align: center; width: 60%; margin: auto;" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"
+                       style="text-align: center; width: 60%; margin: auto;" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control"
+                       style="text-align: center; width: 60%; margin: auto;" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <label class="control-label">Payroll Employee</label>
+            <div class="form-group">
+                <textarea asp-for="Comment" rows="1" cols="1"
+                          style="text-align: center; width: 60%; margin: auto; " placeholder="Enter your Name and Surname">
+                </textarea>
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="width: 80%; margin: auto;">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" type="file" name="attachments" multiple="multiple" accept="*/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+            <div class="alert-danger">
+                @TempData["error"]
+            </div>
+            <div class="alert-success">
+                @TempData["success"]
+            </div>
+        </form>
+    </div>
+</div>

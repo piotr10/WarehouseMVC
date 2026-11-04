@@ -1,0 +1,53 @@
+﻿@model WarehouseMVC.Domain.Model.Contact
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    h5 {
+        margin-bottom: 20px;
+    }
+</style>
+
+<h1>Details</h1>
+<hr />
+<tbody align="center">
+    <tr class="row">
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Name):</h3>
+            <h5>@Html.DisplayFor(model => model.Name)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Surname):</h3>
+            <h5>@Html.DisplayFor(model => model.Surname)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Address):</h3>
+            <h5>@Html.DisplayFor(model => model.Address)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Email):</h3>
+            <h5>@Html.DisplayFor(model => model.Email)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Phone):</h3>
+            <h5>@Html.DisplayFor(model => model.Phone)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.AddFrom):</h3>
+            <h5>@Html.DisplayFor(model => model.AddFrom)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.ImageName):</h3>
+            <h5>@Html.DisplayFor(model => model.ImageName)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Subject):</h3>
+            <h5>@Html.DisplayFor(model => model.Subject)</h5>
+        </td>
+    </tr>
+</tbody>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

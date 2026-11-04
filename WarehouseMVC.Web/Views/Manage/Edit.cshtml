@@ -1,0 +1,38 @@
+﻿@model WarehouseMVC.Domain.Model.ApplyCountImageModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ApplyCountImageModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4" style="margin: 0 auto;">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FinallCount" class="control-label"></label>
+                <input asp-for="FinallCount" class="form-control" 
+                       style="text-align: center; width: 30%; margin: auto;" />
+                <span asp-validation-for="FinallCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplyCount" class="control-label"></label>
+                <input asp-for="ApplyCount" class="form-control" 
+                       style="text-align: center; width: 30%; margin: auto;"/>
+                <span asp-validation-for="ApplyCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

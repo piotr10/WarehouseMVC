@@ -1,0 +1,184 @@
+﻿@using Omu.AwesomeMvc
+@using WarehouseMVC.Domain.Model
+@model WarehouseMVC.Application.ViewModel.Image.ListImageModelForListVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    tr th {
+        text-align: center;
+    }
+</style>
+
+<h1 align="center">View new Employees</h1>
+<hr />
+<form asp-action="Index" asp-controller="Image" method="post">
+    <div class="row" style="margin-left: 20px;">
+        <input type="text" asp-for="SearchString" name="searchString" id="searchString" />
+        <input type="submit" value="Search" />
+    </div>
+    <div class="row">
+        <table class="table" style="width: 100%; table-layout: fixed;">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Surname
+                </th>
+                <th>
+                    Employment date
+                </th>
+                <th>
+                    Group Manager
+                </th>
+                <th>
+                    Group Leader
+                </th>
+                <th>
+                    Establishment plan
+                </th>
+                <th>
+                    Add Hoc
+                </th>
+                <th>
+                    Rotation
+                </th>
+                <th>
+                    IsHired
+                </th>
+                <th>
+                    Payroll accept
+                </th>
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.ImageModels)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmploymentDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GroupManager.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GroupLeader.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompatibleHarmonogram)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddHoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rotation)
+                    </td>
+                    @if (item.AcceptHiredRecruitment == AcceptHiredRecruitment.Accept && item.AcceptHiredControlling == AcceptHiredControlling.Accept && item.AcceptHiredCfo == AcceptHiredCfo.Accept)
+                    {
+                        <td class="alert-success">
+                            @Html.DisplayFor(modelItem => item.IsHired)
+                        </td>
+                    }
+                    else if (item.AcceptHiredRecruitment == AcceptHiredRecruitment.Denied && item.AcceptHiredControlling == AcceptHiredControlling.Denied && item.AcceptHiredCfo == AcceptHiredCfo.Denied)
+                    {
+                        <td class="alert-danger">
+                            @Html.DisplayFor(modelItem => item.IsHired)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsHired)
+                        </td>
+                    }
+                    @if (item.FinallyHiredPayroll == true)
+                    {
+                        <td class="alert-success">
+                            @Html.DisplayFor(modelItem => item.FinallyHiredPayroll)
+                        </td>
+                    }
+                    else if (item.FinallyHiredPayrollFalse == true)
+                    {
+                        <td class="alert-danger">
+                            @Html.DisplayFor(modelItem => item.FinallyHiredPayrollFalse)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FinallyHiredPayroll)
+                        </td>
+                    }
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Status)</a>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions list
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="GetBlobDownload" asp-route-id="@item.Id">Download</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            @if (User.IsInRole("Admin") || User.IsInRole("Payroll"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="margin-left: 20px;">
+        <table>
+            <tr style="font-size: 20px;">
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                { 
+                    <td>
+                        @if (i != Model.CurrentPage)
+                        {
+                        <a href="javascript:PagerClick(@i)">&nbsp;&nbsp;@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+        <input type="hidden" name="pageNo" id="pageNo" />
+        <input type="hidden" name="pageSize" id="pageSize" value="10" />
+    </div>
+</form>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.forms[1].submit();
+        }
+    </script>
+}

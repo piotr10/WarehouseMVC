@@ -1,0 +1,36 @@
+﻿@using Omu.AwesomeMvc
+@using WarehouseMVC.Domain.Model
+@model IEnumerable<WarehouseMVC.Domain.Model.ApplyCountImageModel>
+
+<div class="container-fluid">
+    <div align="center" style="margin-top:40px; margin-bottom:20px;">
+        <h1>Control Applications Panel</h1>
+    </div>
+    <table class="table" style="width: 40%; height: 15em; margin:auto;">
+        <thead align="center">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinallCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplyCount)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr align="center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinallCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplyCount)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

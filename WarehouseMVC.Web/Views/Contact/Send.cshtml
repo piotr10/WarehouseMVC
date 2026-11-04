@@ -1,0 +1,123 @@
+@using FluentValidation.Resources
+@using WarehouseMVC.Domain.Model
+@model WarehouseMVC.Domain.Model.Contact
+
+<body class="light">
+    <img class="img-fluid" src="~/Images/contactus.jpg">
+    @ViewBag.msg
+    <div>
+        <h1>Contact Us</h1>
+        <p>
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        </p>
+        <div align="center" style="width: 20%; height: auto; margin-left: 175px; float: left;">
+            <h2 style="margin-top: 45px;">
+                Office Information
+            </h2>
+            <div class="col-lg-12" style="margin-top: 25px; margin-bottom: 15px;">
+                <a href="tel:+48000000000" style="color: black">
+                    <img src="~/Images/phone.jpg" />
+                    <h3>Telephone</h3>
+                    <p>+48 000 000 000</p>
+                </a>
+            </div>
+            <div class="col-lg-12" style="margin-top: 20px; margin-bottom: 15px;">
+                <a href="mailto:office@example.com" style="color: black">
+                    <img src="~/Images/mail.jpg" />
+                    <h3>Email</h3>
+                    <p>office@example.com</p>
+                </a>
+            </div>
+            <div class="col-lg-12" style="margin-top: 20px; margin-bottom: 15px;">
+                <img src="~/Images/local.jpg" />
+                <h3>Address</h3>
+                <p>Nazwa Firmy Poland SP.Z o.o.</p>
+                <p>Wilczowola 12/2 26-720 Policzna</p>
+            </div>
+        </div>
+        <div align="center" style="width: 40%; height: auto; margin-right: 175px; margin-top: 30px; float: right; background-color: lightgray; border-radius: 20px;">
+            <form method="post" enctype="multipart/form-data" asp-action="Send">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter your name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="Surname" class="control-label"></label>
+                    <input asp-for="Surname" class="form-control" placeholder="Enter your surname" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" placeholder="Enter your phone" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="Subject" class="control-label"></label>
+                    <input asp-for="Subject" class="form-control" placeholder="Enter subject" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" type="file" name="attachments" multiple="multiple" accept="*/*" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group" hidden="">
+                    <label asp-for="AddFrom" class="control-label" hidden=""></label>
+                    <input asp-for="AddFrom" class="form-control" />
+                    <span asp-validation-for="AddFrom" class="text-danger" hidden=""></span>
+                </div>
+
+                <br />
+                <div class="form-group" style="width: 80%; margin: auto;">
+                    <input type="submit" value="Send mail" class="btn btn-primary" />
+                </div><br />
+            </form>
+            <div class="alert-danger" style="width: 80%; margin: auto;">
+                @TempData["error"]
+            </div>
+            <div class="alert-success" style="width: 80%; margin: auto;">
+                @TempData["success"]
+            </div>
+        </div>
+    </div>
+
+
+    <div style="clear: both"></div>
+
+    <div align="center" style="margin-top: 40px; margin-bottom: 20px;">
+        <h2>Global Locations</h2>
+        <div class="col-md-6; img-fluid;" style="border: 1px solid red;">
+            <div id="map" style="height: 400px; width: 400px;"></div>
+            <script>
+                var map;
+
+                function initMap() {
+                    map = new google.map.Map(document.getElementById('map'),
+                        {
+                            center: { lat: 52.067938, lag: 21.020982 },
+                            zoom: 8
+                        });
+                }
+            </script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+                    type="text/javascript">
+            </script>
+        </div>
+    </div>
+</body>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

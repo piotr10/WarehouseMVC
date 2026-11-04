@@ -1,0 +1,72 @@
+﻿@model WarehouseMVC.Application.ViewModel.Customer.NewCustomerVm
+
+@{
+    ViewData["Title"] = "AddCustomer";
+}
+<h1>AddCustomer</h1>
+<h4>NewCustomerVm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCustomer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NIP" class="control-label"></label>
+                <input asp-for="NIP" class="form-control" />
+                <span asp-validation-for="NIP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="REGON" class="control-label"></label>
+                <input asp-for="REGON" class="form-control" />
+                <span asp-validation-for="REGON" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<h4>Etapy procesu rekrutacji:</h4>
+<h5>Etap 1 - Rekrutacja</h5>
+<p>
+    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+</p>
+<h5>Etap 2 - Podpisanie umowy</h5>
+<p>
+    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+</p>
+<h5>Etap 3 - Akademia</h5>
+<p>
+    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+</p>
+<h5>Etap 4 - Zaczynasz pracę!</h5>
+<p>
+    Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+</p>
+
+
+@* Wyswietlanie wgranego pliku z konkretnej ścieżki do pliku
+    <div class="text-center">
+        <h1 class="display-4">Document Viewer</h1>
+        <br />
+        <form action="@Url.Action("ViewDocument")" method="post">
+            <label>Select a file to view</label>
+            <input type="file" name="fileToView" />
+            <input type="submit" class="btn btn-success" value="Render" />
+        </form>
+    </div>
+*@
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

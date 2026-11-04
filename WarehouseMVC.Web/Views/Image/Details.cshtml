@@ -1,0 +1,44 @@
+﻿@model WarehouseMVC.Application.ViewModel.Image.ImageModelDetailsVm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    h5 {
+        margin-bottom: 20px;
+    }
+</style>
+
+<h1>Details</h1>
+<hr />
+<tbody align="center">
+    <tr class="row">
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.FullName):</h3>
+            <h5>@Html.DisplayFor(model => model.FullName)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Email):</h3>
+            <h5>@Html.DisplayFor(model => model.Email)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.Phone):</h3>
+            <h5>@Html.DisplayFor(model => model.Phone)</h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.GroupManager):</h3>
+            <h5>            <select asp-for="GroupManagerId" asp-items="@ViewBag.GroupManagerId"></select>
+                <span asp-validation-for="GroupManagerId" class="text-danger"></span></h5>
+        </td>
+        <td class="col-sm-12">
+            <h3>@Html.DisplayNameFor(model => model.GroupLeader):</h3>
+            <h5><select asp-for="GroupLeaderId" asp-items="@ViewBag.GroupLeaderId"></select>
+                <span asp-validation-for="GroupLeaderId" class="text-danger"></span></h5>
+        </td>
+    </tr>
+</tbody>
+<br />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
